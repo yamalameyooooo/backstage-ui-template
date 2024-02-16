@@ -14,7 +14,7 @@ module.exports = merge(common('development'), {
     host: HOST,
     port: PORT,
     historyApiFallback: true,
-    open: true,
+    open: ['/ui-template/'],
     static: {
       directory: path.resolve(__dirname, 'dist'),
     },
