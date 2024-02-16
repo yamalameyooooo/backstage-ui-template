@@ -3,9 +3,10 @@
 ### Codegen
 
 After pulling the code head to codegen.js and modify as per your requirement.
-The JSON object represents the Name of the Page : routeUrl
+The JSON object represents the (Name of the Page : routeUrl)
 For default purpose the user needs to maintain "/" always in one of the Single Path Key
-Also Order is important, thats who the UI will be rendered.
+Also Order is important, that's where the UI will be rendered.
+PS: all the files will be auto generated under src/app/Pages/ path.
 ```
 const inputJson = {
   'Landing Page': '/',
