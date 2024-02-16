@@ -3,13 +3,16 @@
 ### Codegen
 
 After pulling the code head to codegen.js and modify as per your requirement.
+The JSON object represents the Name of the Page : routeUrl
+For default purpose the user needs to maintain "/" always in one of the Single Path Key
+Also Order is important, thats who the UI will be rendered.
 ```
 const inputJson = {
-  'Landing Page': 'Landing Page',
-  'Single Nav Item': 'Single Nav Item',
+  'Landing Page': '/',
+  'Single Nav Item': 'single-nav-item',
   'Group Nav Item': {
-    'Group Nav Item 1': 'Group Nav Item 1',
-    'Group Nav Item 2': 'Group Nav Item 2',
+    'Group Nav Item 1': 'group-nav-item-1',
+    'Group Nav Item 2': 'group-nav-item-2',
   },
 };
 ```

@@ -2,11 +2,11 @@ const fs = require('fs');
 
 //input json from user
 const inputJson = {
-  'Landing Page': 'Landing Page',
-  'Single Nav Item': 'Single Nav Item',
+  'Landing Page': '/',
+  'Single Nav Item': 'single-nav-item',
   'Group Nav Item': {
-    'Group Nav Item 1': 'Group Nav Item 1',
-    'Group Nav Item 2': 'Group Nav Item 2',
+    'Group Nav Item 1': 'group-nav-item-1',
+    'Group Nav Item 2': 'group-nav-item-2',
   },
 };
 
@@ -39,22 +39,14 @@ const generatedRoutes = (json) => {
   const generatedRoutes = [];
 
   for (const key in json) {
-    if (json[key] === 'Landing Page') {
-      generatedRoutes.push({
-        component: json[key].replace(/\s+/g, ''),
-        exact: true,
-        label: json[key],
-        path: '/',
-        title: json[key],
-      });
-    } else if (typeof json[key] === 'string') {
+    if (typeof json[key] === 'string') {
       // Single Nav Item
       generatedRoutes.push({
-        component: json[key].replace(/\s+/g, ''),
+        component: key.replace(/\s+/g, ''),
         exact: true,
-        label: json[key],
-        path: `/${key.toLowerCase().replace(/\s+/g, '-')}`,
-        title: json[key],
+        label: key,
+        path: json[key],
+        title: key,
       });
     } else if (typeof json[key] === 'object') {
       // Group Nav Item
@@ -63,9 +55,9 @@ const generatedRoutes = (json) => {
         groupRoutes.push({
           component: subKey.replace(/\s+/g, ''),
           exact: true,
-          label: json[key][subKey],
-          path: `/${key.toLowerCase().replace(/\s+/g, '-')}/${subKey.toLowerCase().replace(/\s+/g, '-')}`,
-          title: json[key][subKey],
+          label: subKey,
+          path: `/${key.toLowerCase().replace(/\s+/g, '-')}/${json[key][subKey]}`,
+          title: subKey,
         });
       }
       generatedRoutes.push({
