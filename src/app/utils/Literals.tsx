@@ -2,7 +2,7 @@
 class Literals {
 
     static APP_NAME: string = "UI Template";
-    static COMPANY_TEAM_NAME: string = "Company Name/Team Name";
+    static COMPANY_TEAM_NAME: string = "Red Hat";
     static BASE_URL: string = '/ui-template/';
 
     static COMPANY_HOMEPAGE: string = "https://github.com/yamalameyooooo/";
