@@ -195,7 +195,7 @@ const AppLayout: React.FunctionComponent<IAppLayout> = ({ children }) => {
         </div>
         <div>
           <Text id="CopyRightMessageFooter" ouiaId="CopyRightMessageFooter" style={{ color: '#D2D2D2' }}>
-            Copyright © Message.
+            Copyright © 2014-2024 Red Hat, Inc.
           </Text>
         </div>
         <div>
