@@ -1,5 +1,24 @@
 ## Quick-start
 
+### Codegen
+
+After pulling the code head to codegen.js and modify as per your requirement.
+```
+const inputJson = {
+  'Landing Page': 'Landing Page',
+  'Single Nav Item': 'Single Nav Item',
+  'Group Nav Item': {
+    'Group Nav Item 1': 'Group Nav Item 1',
+    'Group Nav Item 2': 'Group Nav Item 2',
+  },
+};
+```
+This will be the generated Navigation Item(s) and routes. After that the npm install will take care of everything.
+```
+# localhost url
+http://localhost:4200/ui-template/
+```
+
 ```bash
 npm install && npm run start:dev
 ```

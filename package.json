@@ -4,6 +4,7 @@
   "description": "UI template for backstage to create UI apps.",
   "private": true,
   "scripts": {
+    "postinstall": "node codegen.js",
     "prebuild": "npm run type-check && npm run clean",
     "dr:surge": "node dr-surge.js",
     "build": "webpack --config webpack.prod.js && npm run dr:surge",

@@ -2,10 +2,6 @@ import { NotFound } from '@app/NotFound/NotFound';
 import { useDocumentTitle } from '@app/utils/useDocumentTitle';
 import * as React from 'react';
 import { Route, RouteComponentProps, Switch, useLocation } from 'react-router-dom';
-import { GroupNavItem1 } from './Pages/GroupNavItem/GroupNavItem1/GroupNavItem1';
-import { GroupNavItem2 } from './Pages/GroupNavItem/GroupNavItem2/GroupNavItem2';
-import { SingleNavItem } from './Pages/SingleNavItem/SingleNavItem';
-import { LandingPage } from './Pages/LandingPage/LandingPage';
 
 let routeFocusTimer: number;
 export interface IAppRoute {
@@ -26,41 +22,7 @@ export interface IAppRouteGroup {
 
 export type AppRouteConfig = IAppRoute | IAppRouteGroup;
 
-const routes: AppRouteConfig[] = [
-  {
-    component: LandingPage,
-    exact: true,
-    label: 'Landing Page',
-    path: '/',
-    title: 'Landing Page',
-  },
-  {
-    component: SingleNavItem,
-    exact: true,
-    label: 'Single Nav Item',
-    path: '/single-nav-item',
-    title: 'Single Nav Item',
-  },
-  {
-    label: 'Group Nav Item',
-    routes: [
-      {
-        component: GroupNavItem1,
-        exact: true,
-        label: 'Group Nav Item 1',
-        path: '/group-nav-item/group-nav-item-1',
-        title: 'Group Nav Item 1',
-      },
-      {
-        component: GroupNavItem2,
-        exact: true,
-        label: 'Group Nav Item 2',
-        path: '/group-nav-item/group-nav-item-2',
-        title: 'Group Nav Item 2',
-      }
-    ]
-  }
-];
+const routes: AppRouteConfig[] = generatedRoutesHere;
 
 // a custom hook for sending focus to the primary content container
 // after a view has loaded so that subsequent press of tab key
@@ -110,36 +72,5 @@ const AppRoutes = (): React.ReactElement => (
     <PageNotFound title="404 Page Not Found" />
   </Switch>
 );
-
-const routesByUser = (json) => {
-  for (const key in json) {
-    if (typeof json[key] === 'string') {
-      // Single Nav Item
-      routes.push({
-        component: json[key].replace(' ',''),
-        exact: true,
-        label: json[key],
-        path: `/${key.toLowerCase().replace(/\s+/g, '-')}`,
-        title: json[key],
-      });
-    } else if (typeof json[key] === 'object') {
-      // Group Nav Item
-      const groupRoutes:any = [];
-      for (const subKey in json[key]) {
-        groupRoutes.push({
-          component: subKey.replace(' ',''),
-          exact: true,
-          label: json[key][subKey],
-          path: `/${key.toLowerCase().replace(/\s+/g, '-')}/${subKey.toLowerCase().replace(/\s+/g, '-')}`,
-          title: json[key][subKey],
-        });
-      }
-      routes.push({
-        label: key,
-        routes: groupRoutes,
-      });
-    }
-  }
-};
 
 export { AppRoutes, routes };
