@@ -1,3 +1,4 @@
+import Literals from '@app/utils/Literals';
 import packageJson from '@jsonPath';
 import { Button, Modal, ModalVariant } from '@patternfly/react-core';
 import * as React from 'react';
