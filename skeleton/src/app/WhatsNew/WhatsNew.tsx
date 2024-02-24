@@ -33,16 +33,7 @@ const WhatsNew = (props: IWhatsNewProp) => {
           </Button>,
         ]}
       >
-        {Literals.DUMMY_TEXT}
-        <br />
-        <br />
-        {Literals.DUMMY_TEXT}
-        <br />
-        <br />
-        {Literals.DUMMY_TEXT}
-        <br />
-        <br />
-        {Literals.DUMMY_TEXT}
+        {Literals.WHATS_NEW_CONTENT}
       </Modal>
     </React.Fragment>
   );

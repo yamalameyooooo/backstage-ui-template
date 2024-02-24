@@ -1,14 +1,7 @@
 const fs = require('fs');
 
 //input json from user
-const inputJson = {
-  'Landing Page': '/',
-  'Single Nav Item': '/single-nav-item',
-  'Group Nav Item': {
-    'Group Nav Item 1': '/group-nav-item-1',
-    'Group Nav Item 2': '/group-nav-item-2',
-  },
-};
+const inputJson = ${{values.page_route_input_json}};
 
 // Function to generate import lines from JSON
 const generateImportLines = (json) => {

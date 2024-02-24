@@ -1,0 +1,135 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: react-with-spaship-patternfly-template
+  title: React Codegen app with SPAship
+  description: Create a new code generated react website project for gitlab with basic CI/CD pipeline with patternfly 5.2
+  tags:
+    - react
+    - codegen
+    - patternfly
+    - spaship
+    - gitlab
+    - ci
+    - template
+spec:
+  owner: sshamsud@redhat.com
+  type: website
+
+
+# Edit the template parameters below to see how they will render in the scaffolder form UI
+parameters:
+  - title: Enter Application Details
+    required:
+      - name
+      - client_id
+      - company_team_name
+      - base_url
+      - company_homepage
+      - mail_to_contact_us
+      - owner
+    properties:
+      name:
+        title: Application name
+        type: string
+        description: Unique name of the application
+      client_id:
+        title: Client ID
+        type: string
+        description: Unique client id of the application, you may use "one-portal" for initial setup.
+      company_team_name:
+        title: Company or Team name
+        type: string
+        description: This name will be displayed on the Nav Bar, e.g, "Red Hat"
+      base_url:
+        title: Base Url
+        type: string
+        pattern : '^\/[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)+\/$'
+        description: Unique base url, put / in the start and in the end, e.g, "/ui-template/"
+      company_homepage:
+        title: Homepage url
+        type: string
+        pattern : '^(https?|ftp):\/\/[^\s\/$.?#].[^\s]*$'
+        description: Company or parent homepage url, this will be used in the footer logo to redirect to company homepage, e.g, "https://www.redhat.com/en"
+      mail_to_contact_us:
+        title: Contact Us 
+        type: string
+        pattern: '^mailto:[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+        description: This should be mailto:email@address.com
+      owner:
+        title: Owner
+        type: string
+        description: Owner of the component
+        ui:field: OwnerPicker
+        ui:options:
+          catalogFilter:
+            kind: Group
+  - title: What's new or change log content
+    required:
+      - whats_new_content
+    properties:
+      whats_new_content:
+        title: What's New or Change Log screen content
+        type: string
+        description: Add the Details in HTML format.
+        ui:widget: textarea
+        ui:options:
+          rows: 15
+        ui:placeholder: |
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus iaculis iaculis massa vitae imperdiet. In porta vehicula ullamcorper. Suspendisse iaculis, eros vel porta accumsan.
+          <br />
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus iaculis iaculis massa vitae imperdiet. In porta vehicula ullamcorper. Suspendisse iaculis, eros vel porta accumsan.
+          <br />
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus iaculis iaculis massa vitae imperdiet. In porta vehicula ullamcorper. Suspendisse iaculis, eros vel porta accumsan.
+          <br />
+  - title: Codegen
+    required:
+      - page_route_input_json
+    properties:
+      page_route_input_json:
+        title: Codegen configuration
+        type: string
+        description: Add the codegen configuration in JSON format. key = Page Name, Value = routeUrl followed by "/", can be a group too.
+        ui:widget: textarea
+        ui:options:
+          rows: 15
+        ui:placeholder: |
+          {
+            'Landing Page': '/',
+            'Single Nav Item': '/single-nav-item',
+            'Group Nav Item': {
+              'Group Nav Item 1': '/group-nav-item-1',
+              'Group Nav Item 2': '/group-nav-item-2',
+            },
+          }
+          
+          Note: there has to be one key with value "/".
+  - title: Choose a location
+    required:
+      - repoUrl
+    properties:
+      repoUrl:
+        title: Repository Location
+        type: string
+        ui:field: RepoUrlPicker
+        ui:options:
+          allowedHosts:
+            - github.com
+            - gitlab.com
+steps:
+  - id: fetch-base
+    name: Fetch Base
+    action: fetch:template
+    input:
+      url: ./template
+      values:
+        name: ${{parameters.name}}
+        client_id: ${{parameters.client_id}}
+        company_team_name: ${{parameters.company_team_name}}
+        base_url: ${{parameters.base_url}}
+        company_homepage: ${{parameters.company_homepage}}
+        mail_to_contact_us: ${{parameters.mail_to_contact_us}}
+        owner: ${{parameters.owner}}
+        whats_new_content: ${{parameters.whats_new_content}}
+        page_route_input_json: ${{parameters.page_route_input_json}}
+        repoUrl: ${{parameters.repoUrl}}

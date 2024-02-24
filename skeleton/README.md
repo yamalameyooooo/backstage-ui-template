@@ -1,4 +1,4 @@
-## Quick-start
+## ${{values.application_name}}
 
 ### Codegen
 
@@ -10,21 +10,14 @@ After pulling the code head to `codegen.js` and modify as mentioned below:
 *   All the files will be auto generated under `src/app/Pages/` path with necessary basic implementations based on the user input as per the `inputJson`.
 
 ```plaintext
-const inputJson = {
-  'Landing Page': '/',
-  'Single Nav Item': '/single-nav-item',
-  'Group Nav Item': {
-    'Group Nav Item 1': '/group-nav-item-1',
-    'Group Nav Item 2': '/group-nav-item-2',
-  },
-};
+const inputJson = ${{values.page_route_input_json}};
 ```
 
 This will be the generated Navigation Item(s) and routes. After that the `npm install` will take care of everything.
 
 ```plaintext
 # localhost url
-http://localhost:4200/ui-template/
+http://localhost:4200${{values.base_url}}
 ```
 
 ```plaintext
