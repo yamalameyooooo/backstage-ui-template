@@ -113,8 +113,7 @@ spec:
             requestUserCredentials:
               secretsKey: USER_OAUTH_TOKEN
             allowedHosts:
-              - gitlab.cee.redhat.com
-              - gitlab.corp.redhat.com
+              - gitlab.com
               - github.com
 
   steps:
