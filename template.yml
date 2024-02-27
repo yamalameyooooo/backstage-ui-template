@@ -101,20 +101,7 @@ spec:
           }
           
           Note: there has to be one key with value "/".
-    - title: Choose a location
-      required:
-        - repoUrl
-      properties:
-        repoUrl:
-          title: Repository Location
-          type: string
-          ui:field: RepoUrlPicker
-          ui:options:
-            requestUserCredentials:
-              secretsKey: USER_OAUTH_TOKEN
-            allowedHosts:
-              - gitlab.com
-              - github.com
+
 
   steps:
   - id: fetch-base
