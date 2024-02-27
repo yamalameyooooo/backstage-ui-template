@@ -15,10 +15,7 @@ metadata:
 spec:
   owner: sshamsud@redhat.com
   type: website
-
-
-# Edit the template parameters below to see how they will render in the scaffolder form UI
-parameters:
+  parameters:
   - title: Enter Application Details
     required:
       - name
@@ -104,24 +101,28 @@ parameters:
           }
           
           Note: there has to be one key with value "/".
-  - title: Choose a location
-    required:
-      - repoUrl
-    properties:
-      repoUrl:
-        title: Repository Location
-        type: string
-        ui:field: RepoUrlPicker
-        ui:options:
-          allowedHosts:
-            - github.com
-            - gitlab.com
-steps:
+    - title: Choose a location
+      required:
+        - repoUrl
+      properties:
+        repoUrl:
+          title: Repository Location
+          type: string
+          ui:field: RepoUrlPicker
+          ui:options:
+            requestUserCredentials:
+              secretsKey: USER_OAUTH_TOKEN
+            allowedHosts:
+              - gitlab.cee.redhat.com
+              - gitlab.corp.redhat.com
+              - github.com
+
+  steps:
   - id: fetch-base
-    name: Fetch Base
+    name: Fetch Skeleton + Template
     action: fetch:template
     input:
-      url: ./template
+      url: ./skeleton
       values:
         name: ${{parameters.name}}
         client_id: ${{parameters.client_id}}
