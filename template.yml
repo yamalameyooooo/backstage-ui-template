@@ -1,9 +1,9 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: react-with-spaship-patternfly-template
-  title: React Codegen app with SPAship
-  description: Create a new code generated react website project for gitlab with basic CI/CD pipeline with patternfly 5.2
+  name: react-with-codegen-and-spaship-patternfly-template
+  title: UI Software Template using React & Codegen
+  description: Create a new code generated react website project for gitlab with basic CI/CD pipeline using spaship featuring patternfly 5.2.
   tags:
     - react
     - codegen
