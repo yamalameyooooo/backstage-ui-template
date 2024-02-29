@@ -29,7 +29,7 @@ spec:
       name:
         title: Application name
         type: string
-        description: Unique name of the application
+        description: Unique name of the application, This name will be displayed on the Nav Bar below the Company or Team Name.
       client_id:
         title: Client ID
         type: string
@@ -41,8 +41,7 @@ spec:
       base_url:
         title: Base Url
         type: string
-        pattern : '^\/[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)+\/$'
-        description: Unique base url, put / in the start and in the end, e.g, "/ui-template/"
+        description: Unique base url, e.g, "ui-template"
       company_homepage:
         title: Homepage url
         type: string
@@ -52,7 +51,7 @@ spec:
         title: Contact Us 
         type: string
         pattern: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
-        description: This should be mailto:email@address.com
+        description: This should be email address.
       owner:
         title: Owner
         type: string

@@ -17,7 +17,7 @@ This will be the generated Navigation Item(s) and routes. After that the `npm in
 
 ```plaintext
 # localhost url
-http://localhost:4200${{values.base_url}}
+http://localhost:4200/${{values.base_url}}/
 ```
 
 ```plaintext
