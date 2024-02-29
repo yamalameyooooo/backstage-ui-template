@@ -51,7 +51,7 @@ spec:
       mail_to_contact_us:
         title: Contact Us 
         type: string
-        pattern: '^mailto:[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+        pattern: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
         description: This should be mailto:email@address.com
       owner:
         title: Owner
@@ -87,6 +87,15 @@ spec:
         title: Codegen configuration
         type: string
         description: Add the codegen configuration in JSON format. key = Page Name, Value = routeUrl followed by "/", can be a group too.
+        default: |
+          {
+            'Landing Page': '/',
+            'Single Nav Item': '/single-nav-item',
+            'Group Nav Item': {
+              'Group Nav Item 1': '/group-nav-item-1',
+              'Group Nav Item 2': '/group-nav-item-2',
+            },
+          }
         ui:widget: textarea
         ui:options:
           rows: 15
@@ -101,22 +110,46 @@ spec:
           }
           
           Note: there has to be one key with value "/".
-
-
   steps:
-  - id: fetch-base
-    name: Fetch Skeleton + Template
-    action: fetch:template
-    input:
-      url: ./skeleton
-      values:
-        name: ${{parameters.name}}
-        client_id: ${{parameters.client_id}}
-        company_team_name: ${{parameters.company_team_name}}
-        base_url: ${{parameters.base_url}}
-        company_homepage: ${{parameters.company_homepage}}
-        mail_to_contact_us: ${{parameters.mail_to_contact_us}}
-        owner: ${{parameters.owner}}
-        whats_new_content: ${{parameters.whats_new_content}}
-        page_route_input_json: ${{parameters.page_route_input_json}}
-        repoUrl: ${{parameters.repoUrl}}
+    - id: fetch-base
+      name: Fetch Skeleton + Template
+      action: fetch:template
+      input:
+        url: ./skeleton
+        values:
+          name: ${{parameters.name}}
+          client_id: ${{parameters.client_id}}
+          company_team_name: ${{parameters.company_team_name}}
+          base_url: ${{parameters.base_url}}
+          company_homepage: ${{parameters.company_homepage}}
+          mail_to_contact_us: ${{parameters.mail_to_contact_us}}
+          owner: ${{parameters.owner}}
+          whats_new_content: ${{parameters.whats_new_content}}
+          page_route_input_json: ${{parameters.page_route_input_json}}
+          repoUrl: ${{parameters.repoUrl}}
+
+    - id: publish
+      if: ${{ parameters.repoUrl | parseRepoUrl | pick('host') === 'github.com' }}
+      name: Publish
+      action: publish:gitlab
+      input:
+        allowedHosts:
+          - github.com
+        description: This is ${{ parameters.spa_name }}
+        repoUrl: ${{ parameters.repoUrl }}
+        repoVisibility: public
+
+    - id: register
+      name: Register
+      action: catalog:register
+      input:
+        repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
+        catalogInfoPath: '/catalog-info.yaml'
+
+  output:
+    links:
+      - title: Repository
+        url: ${{ steps.publish.output.remoteUrl }}
+      - title: Open in catalog
+        icon: catalog
+        entityRef: ${{ steps.register.output.entityRef }}
