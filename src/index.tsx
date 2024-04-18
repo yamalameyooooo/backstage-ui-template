@@ -17,26 +17,31 @@ if (process.env.NODE_ENV !== "production") {
   const axe = require("react-axe");
   axe(React, ReactDOM, 1000, config);
 }
-
-opcBase.configure({
-  apiBasePath: "",
-  subscriptionsPath: "",
-  keycloakUrl: "https://auth.stage.redhat.com/auth",
-  keycloakClientId: Literals.CLIENT_ID,
-  keycloakRealm: "EmployeeIDP",
-  projectId: ""
-});
+// Login Functionality
+// opcBase.configure({
+//   apiBasePath: "",
+//   subscriptionsPath: "",
+//   keycloakUrl: "https://auth.stage.redhat.com/auth",
+//   keycloakClientId: Literals.CLIENT_ID,
+//   keycloakRealm: "EmployeeIDP",
+//   projectId: ""
+// });
 
 const root = ReactDOM.createRoot(document.getElementById("root") as Element);
 
-if(opcBase?.auth){
-  opcBase.auth?.onLogin(() => {
-    root.render(
-      <App /> 
-    )
-  });
-} else {
-  root.render(
-    <App /> 
-  )
-}
+// Login Functionality
+// if(opcBase?.auth){
+//   opcBase.auth?.onLogin(() => {
+//     root.render(
+//       <App /> 
+//     )
+//   });
+// } else {
+//   root.render(
+//     <App /> 
+//   )
+// }
+
+root.render(
+  <App /> 
+)

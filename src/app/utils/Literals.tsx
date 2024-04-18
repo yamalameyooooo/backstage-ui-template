@@ -2,8 +2,8 @@
 class Literals {
 
     static APP_NAME: string = "UI Template";
-    static CLIENT_ID: string = "one-portal";
-    static COMPANY_TEAM_NAME: string = "Red Hat";
+    // static CLIENT_ID: string = "one-portal";
+    static COMPANY_TEAM_NAME: string = "Shamsuddin";
     static BASE_URL: string = '/ui-template/';
 
     static COMPANY_HOMEPAGE: string = "https://github.com/yamalameyooooo/";
